@@ -3,7 +3,7 @@
 Plugin Name: Limit Login Sessions
 Plugin URI: https://www.stefanomarra.com
 Description: Limit concurrent sessions
-Version: 1.0
+Version: 1.0.1
 Author: Stefano Marra
 Author URI: https://www.stefanomarra.com
 License: GPL2
