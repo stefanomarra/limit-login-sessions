@@ -34,7 +34,7 @@ if ( ! class_exists( 'SM_Limit_Login_Sessions' ) ) :
 		 */
 		function __construct() {
 
-			add_filter('authenticate', array( $this, 'check_authenticate' ), 15, 2);
+			add_filter('authenticate', array( $this, 'check_authenticate' ), 50, 2);
 			add_filter('attach_session_information', array( $this, 'attach_session_information' ) );
 			add_action('template_redirect', array( $this, 'update_session_last_activity' ) );
 
@@ -51,6 +51,10 @@ if ( ! class_exists( 'SM_Limit_Login_Sessions' ) ) :
 		 * @return void
 		 */
 		public function check_authenticate($user, $username) {
+
+			if ( !$user || is_wp_error($user) || !is_a($user, 'WP_User') ) {
+				return $user;
+			}
 
 			// 1. Get all active session for this user
 			if ( !username_exists($username) || !$user = get_user_by('login', $username) ) {
